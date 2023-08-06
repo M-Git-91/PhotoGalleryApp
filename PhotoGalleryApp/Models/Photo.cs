@@ -9,7 +9,8 @@ namespace PhotoGalleryApp.Models
         public int Id { get; set; }
         [Required]
         public string Title { get; set; } = string.Empty;
+        [Required]
+        public string URL { get; set; } = string.Empty;
         public AlbumNumber AlbumCategory { get; set; }
-        public DateOnly DateTaken { get; set; }
     }
 }
