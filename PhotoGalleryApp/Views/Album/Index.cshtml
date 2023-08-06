@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Photo>
+
+<h1>Index</h1>
+
+@foreach(var photo in Model)
+{
+    <img src=@photo.URL alt="photo" width="400" height="300"><img>
+}
+
