@@ -44,3 +44,148 @@
         opacity: 0.7;
     }
 }
+
+
+////////////////////////////SHARED + FOREST////////////////////////////
+.albums {
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/fotoappmg.appspot.com/o/background-forest.jpg?alt=media&token=889c56c1-e61c-4c17-aeec-d1dd88dae1ab); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 15%;
+    min-height: 100vh;
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    font-family: 'Merriweather', serif;
+    text-align: center;
+
+    &__card {
+        max-width: 25vw;
+        height: 50vh;
+        margin-right: 12vw;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        background-color: #fff;
+        box-shadow: -1px 0px 29px -3px rgba(0,0,0,0.7);
+        -webkit-box-shadow: -1px 0px 29px -3px rgba(0,0,0,0.7);
+        -moz-box-shadow: -1px 0px 29px -3px rgba(0,0,0,0.7);
+    }
+
+    &__link {
+        position: relative;
+        bottom: 25px;
+        margin: 0;
+        text-decoration: none;
+        text-align: center;
+        color: #7a7a7a
+    }
+
+    &__secTitle {
+        font-family: "montserrat",Sans-serif;
+        font-size: 15px;
+        font-weight: 300;
+        margin: 10px;
+        color: #7a7a7a
+    }
+
+    &__divider {
+        font-family: "montserrat",Sans-serif;
+        font-size: 15px;
+        font-weight: 300;
+        letter-spacing: 2px;
+        margin: 10px;
+        color: #7a7a7a
+    }
+
+    &__mainTitle {
+        font-size: 35px;
+        font-weight: 300;
+        letter-spacing: 1.5px;
+        margin: 10px;
+        margin-bottom: 20px;
+        color: #7a7a7a
+    }
+
+    &__cover {
+        max-width: 60%;
+        outline: rgba(255, 255, 255, 0.493) 2px solid;
+        transition: all .3s ease-in-out;
+
+        &:hover {
+            cursor: pointer;
+            transform: scale(0.95);
+        }
+    }
+
+
+    &__btn {
+        max-width: 150px;
+        margin-inline: auto;
+        padding: 8px 15px;
+        border: none;
+        background-color: transparent;
+        color: #7a7a7a;
+        outline: rgba(255, 255, 255, 0.493) 2px solid;
+        font-family: 'Merriweather', serif;
+        transition: all .3s ease-in-out;
+    }
+
+    &__btn:hover {
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.493);
+        background-color: rgb(42, 41, 41);
+        transform: scale(0.95);
+    }
+}
+
+////////////////////////////KEEN EYES////////////////////////////
+.albums.eyes {
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/fotoappmg.appspot.com/o/background-owl.jpg?alt=media&token=64733361-aedb-4e9e-be14-b3cb9b368bba);
+    align-items: flex-end;
+
+    &__card {
+        margin-left: 0;
+        margin-right: 12vw;
+    }
+}
+
+////////////////////////////FROZEN LANDS////////////////////////////
+.winter
+.albums {
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/fotoappmg.appspot.com/o/background-winter.jpg?alt=media&token=c00e81a8-6611-48f9-8286-7e0e0e294039);
+    background-position: 50% 35%;
+    align-items: flex-start;
+
+    &__card {
+        position: relative;
+        margin-right: 0;
+        margin-left: 12vw;
+    }
+}
+
+
+////////////////////////////CLOSER LOOK//////////////////////////////////
+
+.macro
+.albums{
+    background-image: url(https://firebasestorage.googleapis.com/v0/b/fotoappmg.appspot.com/o/background-macro.jpg?alt=media&token=210a63b9-63e2-44c9-bfa0-59551f8e067c);
+    background-position: 50% 35%;
+    align-items: flex-start;
+
+    &__card {
+        margin-right: 0;
+        margin-left: 12vw;
+    }
+
+    &__secTitle {
+        margin: 0;
+    }
+
+    &__mainTitle {
+        margin-bottom: 10px;
+    }
+}
