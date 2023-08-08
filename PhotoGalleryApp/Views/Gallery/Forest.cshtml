@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Photo>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walk in the Woods</title>
+    <link rel="stylesheet" href="~/css/Gallery.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">    
+</head>
+<body>
+    <section>
+        <div class="wrapper">
+            <img class="wrapper__headerImg" src="https://firebasestorage.googleapis.com/v0/b/fotoappmg.appspot.com/o/albumHeaders%2Fforest-header.jpg?alt=media&token=af3ad318-2edf-4d32-90f0-05a85c872f08" alt="headerImg" />
+            <h2 class="wrapper__title">
+                Walk in the Forest
+                <br />
+                <span class="wrapper__divider">...............................</span>
+            </h2>
+        </div>
+    </section>
+
+    @foreach (var item in Model)
+    {
+        <img src="@item.URL" class="photo" alt="photo" />
+    }
+
+
+
+    <!--////////////////////////MODAL TEST ///////////////////-->
+    <img id="myImg" style="max-width:300px" src="https://firebasestorage.googleapis.com/v0/b/fotoappmg.appspot.com/o/19202963.jpg?alt=media&token=bc099f07-7ea6-4072-8315-2348ec498c86" alt="Alternate Text" />
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- The Close Button -->
+        <span class="close">&times;</span>
+
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content" id="img01">
+
+        <!-- Modal Caption (Image Text) -->
+        <div id="caption"></div>
+    </div>
+
+    <script src="~/js/Modal.js"></script>
+</body>
+</html>
