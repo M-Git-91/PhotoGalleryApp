@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using PhotoGalleryApp.Data;
+using PhotoGalleryApp.Helpers;
+using PhotoGalleryApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,8 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("LocalConnection"));
 });
-
+builder.Services.AddScoped<IPhotoService, PhotoService>();
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettins"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -16,23 +16,41 @@
 </head>
 <body>
     <!-- HEADER -->
-    <section>
-        <div class="wrapper">
-            <img class="wrapper__headerImg" src="https://firebasestorage.googleapis.com/v0/b/fotoappmg.appspot.com/o/albumHeaders%2Fforest-header.jpg?alt=media&token=af3ad318-2edf-4d32-90f0-05a85c872f08" alt="headerImg" />
-            <h2 class="wrapper__title">
-                Walk in the Forest
-                <br />
-                <span class="wrapper__divider">...............................</span>
-            </h2>
-        </div>
-    </section>
+    <div class="background">
+        <section>
+            <div class="header">
+                <img class="header__headerImg" src="https://firebasestorage.googleapis.com/v0/b/fotoappmg.appspot.com/o/albumHeaders%2Fforest-header.jpg?alt=media&token=af3ad318-2edf-4d32-90f0-05a85c872f08" alt="headerImg" />
+                <a class="home" href="/">
+                    <img class="home__img" src="https://firebasestorage.googleapis.com/v0/b/fotoappmg.appspot.com/o/logo.png?alt=media&token=f1745ca3-c04b-453a-99c8-4d61394f2c9b" alt="Home" />
+                </a>
+                <h2 class="header__title">
+                    Walk in the Woods
+                    <br />
+                    <span class="header__divider">....................................</span>
+                </h2>
+                <ul class="list">
+                    <li class="list__li">
+                        <a class="list__link" href="/gallery/macro">Closer Look</a>
+                    </li>
+                    <li class="list__li">
+                        <a class="list__link" href="/gallery/macro">Keen Eyes</a>
+                    </li>
+                    <li class="list__li">
+                        <a class="list__link" href="/gallery/macro">Frozen Lands</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
 
-    <!-- GALLERY -->
-    <div class="gallery">
-    @foreach (var item in Model)
-    {
-        <img src="@item.URL" class="gallery__img modal-target" alt="photo" />
-    }
+        <!-- GALLERY -->
+        <section class="gallery">
+            <div class="gallery__wrapper">
+                @foreach (var item in Model)
+                {
+                    <img src="@item.URL" class="gallery__img modal-target" alt="photo" />
+                }
+            </div>
+        </section>
     </div>
 
     <!-- MODAL WINDOW -->
