@@ -12,7 +12,7 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("LocalConnection"));
 });
 builder.Services.AddScoped<IPhotoService, PhotoService>();
-builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettins"));
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

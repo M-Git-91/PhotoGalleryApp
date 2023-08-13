@@ -1,23 +1,39 @@
-﻿@model Photo
+﻿@model PhotoGalleryApp.ViewModels.CreatePhotoViewModel
 
-<form method="post" asp-action="Create" enctype="multipart/form-data">
-    <div class="form-group">
-        <label asp-for="Title">Title</label>
-        <input asp-for="Title" class="form-control" placeholder="Enter photo title">
-        <span asp-validation-for="Title" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label>Album</label>
-        <select asp-for="AlbumCategory" asp-items="@Html.GetEnumSelectList((typeof(PhotoGalleryApp.Enums.AlbumNumber)))">
-            <option>--Select--</option>
-        </select>
-        <span asp-validation-for="AlbumCategory" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="URL">Photo</label>
-        <input asp-for="URL" type="file" class="form-control">
-        <span asp-validation-for="Title" class="text-danger"></span>
-    </div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration</title>
+    <link rel="stylesheet" href="~/css/Admin.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+</head>
 
-    <button type="submit">Upload</button>
-</form>
+<body>
+    <section class="upload">
+        <h1>Upload Photo</h1>
+        <form method="post" asp-action="Create" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Title">Title</label>
+                <input asp-for="Title" class="form-control" placeholder="Enter photo title">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Album</label>
+                <select asp-for="AlbumCategory" asp-items="@Html.GetEnumSelectList((typeof(PhotoGalleryApp.Enums.AlbumNumber)))">
+                    <option>--Select--</option>
+                </select>
+                <span asp-validation-for="AlbumCategory" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image">Photo</label>
+                <input asp-for="Image" type="file" class="form-control">
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <button type="submit">Upload</button>
+        </form>
+    </section>
+</body>
+</html>

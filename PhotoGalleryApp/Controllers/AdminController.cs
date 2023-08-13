@@ -2,6 +2,7 @@
 using PhotoGalleryApp.Data;
 using PhotoGalleryApp.Models;
 using PhotoGalleryApp.Services;
+using PhotoGalleryApp.ViewModels;
 
 namespace PhotoGalleryApp.Controllers
 {
@@ -22,13 +23,54 @@ namespace PhotoGalleryApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Photo newPhoto)
+        public IActionResult Create(CreatePhotoViewModel requestVM)
         {
             if(ModelState.IsValid) 
             {
-                var result = _photoService.AddPhoto(newPhoto.URL);
+                var result = _photoService.AddPhoto(requestVM.Image);
+
+                var newPhoto = new Photo
+                {
+                    Title = requestVM.Title,
+                    URL = result.Url.ToString(),
+                    AlbumCategory = requestVM.AlbumCategory,
+                };
+
+                _context.Add(newPhoto);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
             }
-            _context.Add(newPhoto);
+            else
+            {
+                ModelState.AddModelError("", "Photo upload failed");
+            }
+            return RedirectToAction("Index");          
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id) 
+        {
+            var photo = _context.Photos.FirstOrDefault(p => p.Id == id);
+            if (photo == null) 
+            {
+                return View("Error");
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ActionName("DeletePhoto")]
+        public IActionResult DeletePhoto(int id)
+        {
+            var photo = _context.Photos.FirstOrDefault(p => p.Id == id);
+            if (photo == null)
+            {
+                return View("Error");
+            }
+            if (!string.IsNullOrEmpty(photo.URL))
+            {
+              _photoService.DeletePhoto(photo.URL);
+            }
+            _context.Photos.Remove(photo);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
