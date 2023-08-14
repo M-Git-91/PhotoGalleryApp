@@ -19,7 +19,8 @@ namespace PhotoGalleryApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            IEnumerable<Photo> photos = _context.Photos;
+            return View(photos);
         }
 
         [HttpPost]
