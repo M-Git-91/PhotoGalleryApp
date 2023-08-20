@@ -36,10 +36,15 @@ namespace PhotoGalleryApp.Services
             return uploadResult;
         }
 
-        public DeletionResult DeletePhoto(string publicId)
+        public DelResResult DeletePhoto(string publicId)
         {
-            var deleteParams = new DeletionParams(publicId);
-            var result = _cloudinary.Destroy(deleteParams);
+            var deleteParams = new DelResParams()
+            {
+                PublicIds = new List<string> { publicId },
+                Type = "upload",
+                ResourceType = ResourceType.Image
+            };
+            var result = _cloudinary.DeleteResources(deleteParams);
             return result;
         }
     }

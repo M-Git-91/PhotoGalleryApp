@@ -1,68 +1,27 @@
-﻿@model IEnumerable<Photo>
-@{
-    Layout = null;
+﻿@{
+    Layout = "_Gallery";
 }
 
-<!DOCTYPE html>
+@section PageTitle {
+    Walk in the Woods
+}
 
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walk in the Woods</title>
-    <link rel="stylesheet" href="~/css/Gallery.css" asp-append-version="true" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- HEADER -->
-    <div class="background">
-        <section>
-            <div class="header">
-                <img class="header__headerImg" src="https://firebasestorage.googleapis.com/v0/b/fotoappmg.appspot.com/o/albumHeaders%2Fforest-header.jpg?alt=media&token=af3ad318-2edf-4d32-90f0-05a85c872f08" alt="headerImg" />
-                <a class="home" href="/">
-                    <img class="home__img" src="https://firebasestorage.googleapis.com/v0/b/fotoappmg.appspot.com/o/logo.png?alt=media&token=f1745ca3-c04b-453a-99c8-4d61394f2c9b" alt="Home" />
-                </a>
-                <h2 class="header__title">
-                    Walk in the Woods
-                    <br />
-                    <span class="header__divider">....................................</span>
-                </h2>
-                <ul class="list">
-                    <li class="list__li">
-                        <a class="list__link" href="/gallery/macro">Closer Look</a>
-                    </li>
-                    <li class="list__li">
-                        <a class="list__link" href="/gallery/macro">Keen Eyes</a>
-                    </li>
-                    <li class="list__li">
-                        <a class="list__link" href="/gallery/macro">Frozen Lands</a>
-                    </li>
-                </ul>
-            </div>
-        </section>
+@section Title {
+    Walk in the Woods
+}
 
-        <!-- GALLERY -->
-        <section class="gallery">
-            <div class="gallery__wrapper">
-                @foreach (var item in Model)
-                {
-                    <img src="@item.URL" class="gallery__img modal-target" alt="photo" />
-                }
-            </div>
-        </section>
-    </div>
+@section headerImg {
+    src=https://res.cloudinary.com/dfqrqfs3a/image/upload/v1692527263/headerImg/cpyvohb2jyq7pioz1gym.jpg
+}
 
-    <!-- MODAL WINDOW -->
-    <div id="modal" class="modal">
-        <span id="modal-close" class="modal-close">&times;</span>
-        <img id="modal-content" class="modal-content">
-        <div id="modal-caption" class="modal-caption"></div>
-    </div>
+@section Album1 {
+    <a class="list__link" href="/gallery/macro">Closer Look</a>
+}
 
-    <script src="~/js/Modal.js"></script>
-    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
-</body>
-</html>
+@section Album2 {
+    <a class="list__link" href="/gallery/wildlife">Keen Eyes</a>
+}
 
-<!-- https://codepen.io/sinisag/pen/vPEajE-->
+@section Album3 {
+    <a class="list__link" href="/gallery/winter">Frozen Lands</a>
+}

@@ -79,7 +79,7 @@ namespace PhotoGalleryApp.Controllers
             {
                 ModelState.AddModelError("", "Photo upload failed");
             }
-            return RedirectToAction("Winter");          
+            return RedirectToAction("Index");          
         }
 
         /// Edit Photos
@@ -138,14 +138,8 @@ namespace PhotoGalleryApp.Controllers
         }
 
 
-
-
-
-
-
-
         ///Delete photos
-        [HttpGet]
+       [HttpGet]
         public IActionResult Delete(int id) 
         {
             var photo = _context.Photos.FirstOrDefault(p => p.Id == id);
@@ -153,10 +147,10 @@ namespace PhotoGalleryApp.Controllers
             {
                 return View("Error");
             }
-            return RedirectToAction("Index");
+            return View(photo);
         }
 
-        [HttpPost, ActionName("DeletePhoto")]
+        [HttpPost, ActionName("Delete")]
         public IActionResult DeletePhoto(int id)
         {
             var photo = _context.Photos.FirstOrDefault(p => p.Id == id);

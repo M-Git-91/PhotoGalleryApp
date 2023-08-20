@@ -5,7 +5,7 @@ namespace PhotoGalleryApp.Services
     public interface IPhotoService
     {
         ImageUploadResult AddPhoto(IFormFile file);
-        DeletionResult DeletePhoto(string publicId);
+        DelResResult DeletePhoto(string publicId);
 
     }
 }

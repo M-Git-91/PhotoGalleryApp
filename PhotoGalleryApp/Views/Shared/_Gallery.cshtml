@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Photo>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@RenderSection("PageTitle", true)</title>
+    <link rel="stylesheet" href="~/css/Gallery.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="background">
+        <section>
+            <div class="header">
+                <img class="header__headerImg" @RenderSection("headerImg", true) alt="headerImg" />
+                <a class="home" href="/">
+                    <img class="home__img" src="https://firebasestorage.googleapis.com/v0/b/fotoappmg.appspot.com/o/logo.png?alt=media&token=f1745ca3-c04b-453a-99c8-4d61394f2c9b" alt="Home" />
+                </a>
+                <h2 class="header__title">
+                    @RenderSection("Title", true)
+                    <br />
+                    <span class="header__divider">....................................</span>
+                </h2>
+                <ul class="list">
+                    <li class="list__li">
+                        <a class="list__link" href="/">Home</a>
+                    </li>
+                    <li class="list__li">
+                        @RenderSection("Album1", true)
+                    </li>
+                    <li class="list__li">
+                        @RenderSection("Album2", true)
+                    </li>
+                    <li class="list__li">
+                        @RenderSection("Album3", true)
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- GALLERY -->
+        <section class="gallery">
+            <div class="gallery__wrapper">
+                @foreach (var item in Model)
+                {
+                    <img src="@item.URL" class="gallery__img modal-target" alt="photo" />
+                }
+            </div>
+        </section>
+    </div>
+
+    <!-- MODAL WINDOW -->
+    <div id="modal" class="modal">
+        <span id="modal-close" class="modal-close">&times;</span>
+        <img id="modal-content" class="modal-content">
+        <div id="modal-caption" class="modal-caption"></div>
+    </div>
+
+    <script src="~/js/Modal.js"></script>
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+</body>
+</html>
+
+<!-- https://codepen.io/sinisag/pen/vPEajE-->
