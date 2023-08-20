@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Photo>
+@{
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+@section Albums {
+    <section class="py-2 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Albums</h1>
+                <p>
+                    <a href="/admin/" class="btn btn-secondary my-2">Forest</a>
+                    <a href="/admin/macro" class="btn btn-secondary my-2 active">Macro</a>
+                    <a href="/admin/wildlife" class="btn btn-secondary my-2">Wildlife</a>
+                    <a href="/admin/winter" class="btn btn-secondary my-2">Winter</a>
+                    <a href="/admin/bw" class="btn btn-secondary my-2">Black&White</a>
+                </p>
+            </div>
+        </div>
+    </section>
+}
+
+@section Photos {
+    <div class="album py-5 bg-body-tertiary">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                @foreach (var photo in Model)
+                {
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img src=@photo.URL class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c" />
+                            <text x="50%" y="50%" fill="#eceeef" dy=".3em">@photo.Title</text>
+                            <div class="card-body">
+                                <p class="card-text"></p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
