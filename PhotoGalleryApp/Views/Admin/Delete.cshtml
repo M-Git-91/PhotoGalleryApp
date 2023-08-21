@@ -4,7 +4,7 @@
 }
 
 @section Albums {
-    <h1 class="text-center text-primary">Are you sure you want to delete this club?</h1>
+    <h1 class="text-center text-primary">Are you sure you want to delete this photo?</h1>
 
     <form method="post" asp-action="Delete" enctype="multipart/form-data" style="max-width: 40vw; margin-inline: auto; margin-top: 50px">
         <input type="hidden" value="Id" id="Id" />
@@ -15,7 +15,7 @@
 
         </div>
         <div class="form-group">
-            <label asp-for="AlbumCategory">Club Category</label>
+            <label asp-for="AlbumCategory">Album</label>
             <p asp-for="AlbumCategory" class="form-control">@Model.AlbumCategory</p>
             <span asp-validation-for="AlbumCategory" class="text-danger"></span>
         </div>

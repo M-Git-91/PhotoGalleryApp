@@ -125,9 +125,9 @@ namespace PhotoGalleryApp.Controllers
 
             var newPhoto = new Photo
             {
-                Id = id,
-                Title = photo.Title,
-                AlbumCategory = photo.AlbumCategory,
+                Id = requestVM.Id,
+                Title = requestVM.Title,
+                AlbumCategory = requestVM.AlbumCategory,
                 URL = photoResult.Url.ToString()
             };
 
