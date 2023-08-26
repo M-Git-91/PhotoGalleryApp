@@ -10,21 +10,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miroslav Gombaský - Nature & Wildlife Photography</title>
     <link rel="stylesheet" href="~/css/homepage.css" asp-append-version="true" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/favicon-32x32.png">
 </head>
 <body>
-
-    <section class="header">
-        <img class="header__logo" src="https://firebasestorage.googleapis.com/v0/b/fotoappmg.appspot.com/o/logo.png?alt=media&token=f1745ca3-c04b-453a-99c8-4d61394f2c9b" alt="logo" />
-        <h1 class="header__title">NATURE & WILDLIFE PHOTOGRAPHY</h1>
-        <p class="header__scroll">scroll</p>
-        <p class="header__arrow">↓</p>
-    </section>
+    <div class="black-background">
+        <section id="header" class="header" data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-duration="1500">
+            <div data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="1000" data-aos-duration="1500" data-aos-offset="0">
+                <img class="header__logo" src="https://firebasestorage.googleapis.com/v0/b/fotoappmg.appspot.com/o/logo.png?alt=media&token=f1745ca3-c04b-453a-99c8-4d61394f2c9b" alt="logo" />
+                <h1 class="header__title">NATURE & WILDLIFE PHOTOGRAPHY</h1>
+                <p class="header__scroll">scroll</p>
+                <p class="header__arrow">↓</p>
+            </div>
+        </section>
+    </div>
 
     <section class="albums">
-        <div class="albums__card">
+        <div class="albums__card" data-aos="fade-left" data-aos-duration="1500">
             <a href=/gallery/forest class="albums__link">
                 <h4 class="albums__secTitle">portfolio</h4>
                 <p class="albums__divider">..........</p>
@@ -39,7 +44,7 @@
 
     <section class="macro">
         <div class="albums">
-            <div class="albums__card">
+            <div class="albums__card" data-aos="fade-right" data-aos-duration="1500">
                 <a href=/gallery/macro class="albums__link">
                     <h4 class="albums__secTitle">portfolio</h4>
                     <p class="albums__divider">..........</p>
@@ -54,7 +59,7 @@
     </section>
 
     <section class="albums eyes">
-        <div class="albums__card">
+        <div class="albums__card" data-aos="fade-left" data-aos-duration="1500">
             <a href=/gallery/wildlife class="albums__link">
                 <h4 class="albums__secTitle">portfolio</h4>
                 <p class="albums__divider">..........</p>
@@ -69,7 +74,7 @@
 
     <section class="winter">
         <div class="albums winter">
-            <div class="albums__card">
+            <div class="albums__card" data-aos="fade-right" data-aos-duration="1500">
                 <a href=/gallery/winter class="albums__link">
                     <h4 class="albums__secTitle">portfolio</h4>
                     <p class="albums__divider">..........</p>
@@ -82,7 +87,17 @@
             </div>
         </div>
     </section>
+
+    <section class="footer">
+        <a href="#header" class="footer__link">
+            <i class="bi bi-arrow-up footer__icon"></i>
+        </a>
+    </section>
 </body>
 </html>
 
 <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>

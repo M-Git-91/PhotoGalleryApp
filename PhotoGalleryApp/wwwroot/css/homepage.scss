@@ -2,6 +2,11 @@
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
+    overflow: auto;
+}
+
+.black-background {
+    background-color: whitesmoke;
 }
 
 .header {
@@ -190,3 +195,158 @@
         margin-bottom: 10px;
     }
 }
+
+
+////////////////////////////FOOTER/////////////////////////////////
+.footer {
+    min-height: 10vh;
+    margin-top: 1em;
+    padding-right: 50px;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    &__link {
+        text-decoration: none;
+        color: black;
+        height: 39px;
+        width: 32px;
+    }
+
+    &__icon {
+        font-size: 32px;
+    }
+}
+
+////////////////////////////MEDIA QUERY/////////////////////////////////
+
+@media only screen and (max-width: 1100px) {
+    .header{
+        &__logo {
+            height: 100px;
+        }
+    }
+    
+    .albums {
+        &__card {
+            width: 50vw;
+            max-width: 50vw;
+            max-height: 70vw;
+            margin-right: 0;
+            margin-inline: auto;
+            padding-top: 20px;
+        }
+
+        &__divider {
+            margin: 0;
+        }
+
+        &__mainTitle {
+            margin: 0 10px 0 10px;
+        }
+
+        &__cover {
+            display: none;
+        }
+
+        &__btn {
+            display: none;
+        }
+    }
+
+    .macro
+    .albums {
+        &__card {
+            width: 50vw;
+            max-width: 50vw;
+            max-height: 70vw;
+            margin-right: 0;
+            margin-inline: auto;
+            padding-top: 20px;
+        }
+    }
+
+    .winter
+    .albums {
+        &__card {
+            width: 50vw;
+            max-width: 50vw;
+            max-height: 70vw;
+            margin-right: 0;
+            margin-inline: auto;
+            padding-top: 20px;
+        }
+    }
+
+    .footer {
+        justify-content: center;
+        padding-right: 0;
+    }
+}
+
+
+
+    @media only screen and (max-width: 500px) {
+        .header__logo {
+            height: 100px;
+        }
+
+        .albums {
+            &__card {
+                max-width: 70vw;
+                width: 70vw;
+                max-height: 40vh;
+                padding: 20px;
+                margin-right: 0;
+                margin-inline: auto;
+            }
+
+            &__secTitle {
+                margin-top: 20px;
+            }
+
+            &_mainTitle {
+                margin: 10px;
+            }
+
+            &__cover {
+                display:inherit;
+                margin-inline: auto;
+
+            }
+
+            &__btn {
+                display: inherit;
+            }
+        }
+
+        .macro
+        .albums {
+            &__card {
+                max-width: 70vw;
+                width: 70vw;
+                max-height: 40vh;
+                padding: 20px;
+                margin-right: 0;
+                margin-inline: auto;
+            }
+        }
+
+        .winter
+        .albums {
+            &__card {
+                max-width: 70vw;
+                width: 70vw;
+                max-height: 40vh;
+                padding: 20px;
+                margin-right: 0;
+                margin-inline: auto;
+            }
+        }
+
+        .footer {
+            justify-content: center;
+            padding-right: 0;
+        }
+    }

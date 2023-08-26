@@ -8,12 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@RenderSection("PageTitle", true)</title>
     <link rel="stylesheet" href="~/css/Gallery.css" asp-append-version="true" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- HEADER -->
-    <div class="background">
+    <div class="background" data-aos="fade-in" data-aos-duration="1500">
         <section>
             <div class="header">
                 <img class="header__headerImg" @RenderSection("headerImg", true) alt="headerImg" />
@@ -44,10 +45,10 @@
 
         <!-- GALLERY -->
         <section class="gallery">
-            <div class="gallery__wrapper">
+            <div class="gallery__wrapper" data-aos="fade-in" data-aos-delay="600" data-aos-easing="linear" >
                 @foreach (var item in Model)
                 {
-                    <img src="@item.URL" class="gallery__img modal-target" alt="photo" />
+                    <img src="@item.URL" class="gallery__img modal-target" alt="photo"/>
                 }
             </div>
         </section>
@@ -62,6 +63,10 @@
 
     <script src="~/js/Modal.js"></script>
     <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
 

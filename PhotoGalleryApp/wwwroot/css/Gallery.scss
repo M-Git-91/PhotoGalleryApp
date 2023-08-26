@@ -88,15 +88,15 @@
     height: auto;
     margin: 0 auto;
 
-    &__wrapper {
+    &__wrapper {       
         display: flex;
         flex-wrap:wrap;
-        margin: 0 8%;
+        margin: 0 8%;     
     }
 
     &__img {
-        max-width: 375px;
-        max-height: 250px;
+        max-width: 23%;
+        max-height: 23%;
         width: auto;
         height: auto;
         margin: 2px;
@@ -202,4 +202,40 @@
     color: #bbb;
     text-decoration: none;
     cursor: pointer;
+}
+
+
+
+
+/////////////////MEDIA QUERY//////////////////
+@media only screen and (max-width: 1100px) {  
+    .modal {
+        padding-top: 20px;
+    }
+}
+
+
+@media only screen and (max-width: 500px) {
+    .modal {
+        padding-top: 20px;
+    }
+
+    .list {
+        &__li {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    }
+
+    .gallery {
+        &__img {
+            max-width: 40vw;
+        }
+    }
+
+    #modal-content {
+        max-width: 90vw;
+        margin-top: 150px;
+
+    }
 }
