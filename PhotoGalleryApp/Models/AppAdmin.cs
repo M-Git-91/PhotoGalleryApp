@@ -1,6 +1,9 @@
-﻿namespace PhotoGalleryApp.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace PhotoGalleryApp.Models
 {
-    public class AppAdmin
+    public class AppAdmin : IdentityUser
     {
+
     }
 }
