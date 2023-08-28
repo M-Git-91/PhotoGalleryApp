@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Authentication.Cookies;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Mvc.Authorization;
+global using Microsoft.EntityFrameworkCore;
 using PhotoGalleryApp.Data;
 using PhotoGalleryApp.Helpers;
 using PhotoGalleryApp.Models;
@@ -10,7 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-    //DB Context
+
+//DB Context
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("LocalConnection"));
@@ -39,7 +41,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

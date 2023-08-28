@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PhotoGalleryApp.Data;
 using PhotoGalleryApp.Models;
@@ -7,6 +8,7 @@ using PhotoGalleryApp.ViewModels;
 
 namespace PhotoGalleryApp.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly DataContext _context;
