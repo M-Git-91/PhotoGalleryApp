@@ -8,9 +8,11 @@ namespace PhotoGalleryApp.ViewModels
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Title { get; set; } = string.Empty;
+        public string Title { get; set; }
+        [Required]
         public string? URL { get; set; }
         public IFormFile Image { get; set; }
-        public AlbumNumber AlbumCategory { get; set; }
+        [Required]
+        public AlbumName AlbumCategory { get; set; }
     }
 }

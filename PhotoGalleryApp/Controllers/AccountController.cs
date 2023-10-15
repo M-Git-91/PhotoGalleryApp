@@ -10,7 +10,6 @@ namespace PhotoGalleryApp.Controllers
     {
         private readonly UserManager<AppAdmin> _userManager;
         private readonly SignInManager<AppAdmin> _signInManager;
-        private readonly DataContext _context;
 
         public AccountController(
             UserManager<AppAdmin> userManager,
@@ -19,7 +18,6 @@ namespace PhotoGalleryApp.Controllers
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _context = context;
         }
 
         [HttpGet]
@@ -36,26 +34,26 @@ namespace PhotoGalleryApp.Controllers
             {
                 return View(loginViewModel);
             }
-            //Find User
+            
             var user = await _userManager.FindByEmailAsync(loginViewModel.Email);
             if (user != null) 
             {
-                //User was found => Check password
+                
                 var passwordCheck = await _userManager.CheckPasswordAsync(user, loginViewModel.Password);
                 if (passwordCheck) 
                 {
-                    //Password valid => Sign in
+                    
                     var result = await _signInManager.PasswordSignInAsync(user, loginViewModel.Password, false, false);
                     if (result.Succeeded) 
                     {
                         return RedirectToAction("Index", "Admin");
                     }
                 }
-                //Password is not valid
+                
                 TempData["Error"] = "Wrong email or password. Please try again.";
                 return View(loginViewModel);
             }
-            //User was not found
+            
             TempData["Error"] = "Wrong email or password. Please try again.";
             return View(loginViewModel);
 

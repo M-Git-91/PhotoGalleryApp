@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PhotoGalleryApp.Data;
@@ -12,83 +13,73 @@ namespace PhotoGalleryApp.Controllers
     public class AdminController : Controller
     {
         private readonly DataContext _context;
+        private readonly ICloudService _cloudService;
         private readonly IPhotoService _photoService;
 
-        public AdminController(DataContext context, IPhotoService photoService)
+        public AdminController(DataContext context, ICloudService cloudService, IPhotoService photoService)
         {
             _context = context;
+            _cloudService = cloudService;
             _photoService = photoService;
         }
-        /// Album views
 
         public IActionResult Index()
         {
-            IEnumerable<Photo> photos = _context.Photos.Where(p => p.AlbumCategory == Enums.AlbumNumber.Forest);
+            IEnumerable<Photo> photos = _photoService.GetPhotosByAlbumName(Enums.AlbumName.Forest);       
             return View(photos);
         }
 
         public IActionResult Macro()
         {
-            IEnumerable<Photo> photos = _context.Photos.Where(p => p.AlbumCategory == Enums.AlbumNumber.Macro);
+            IEnumerable<Photo> photos = _photoService.GetPhotosByAlbumName(Enums.AlbumName.Macro);
             return View(photos);
         }
 
         public IActionResult Wildlife()
         {
-            IEnumerable<Photo> photos = _context.Photos.Where(p => p.AlbumCategory == Enums.AlbumNumber.Wildlife);
+            IEnumerable<Photo> photos = _photoService.GetPhotosByAlbumName(Enums.AlbumName.Wildlife);
             return View(photos);
         }
 
         public IActionResult Winter()
         {
-            IEnumerable<Photo> photos = _context.Photos.Where(p => p.AlbumCategory == Enums.AlbumNumber.Winter);
-            return View(photos);
-        }
-
-        public IActionResult BW()
-        {
-            IEnumerable<Photo> photos = _context.Photos.Where(p => p.AlbumCategory == Enums.AlbumNumber.BW);
+            IEnumerable<Photo> photos = _photoService.GetPhotosByAlbumName(Enums.AlbumName.Winter);
             return View(photos);
         }
 
 
-        /// Upload photos
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
         
         
-        [HttpPost]
+        [HttpPost, ActionName("Create")]
         public IActionResult CreatePost(CreatePhotoViewModel requestVM)
-        {
-            if(ModelState.IsValid) 
+        {           
+
+            if (ModelState.IsValid)
             {
-                var result = _photoService.AddPhoto(requestVM.Image);
-
-                var newPhoto = new Photo
-                {
-                    Title = requestVM.Title,
-                    URL = result.Url.ToString(),
-                    AlbumCategory = requestVM.AlbumCategory,
-                };
-
-                _context.Add(newPhoto);
-                _context.SaveChanges();
+                _photoService.AddPhotoToDb(requestVM);
+                _photoService.Save();          
                 return RedirectToAction("Index");
             }
-            else
-            {
-                ModelState.AddModelError("", "Photo upload failed");
-            }
-            return RedirectToAction("Index");          
+            TempData["Error"] = "Photo upload failed.";
+
+            return RedirectToAction("Create");         
         }
 
-        /// Edit Photos
+
+        [HttpGet]
         public IActionResult Edit(int id)
         {
-            var photo = _context.Photos.FirstOrDefault(p => p.Id == id);
-            if (photo == null) return View("Error");
+            var photo = _photoService.FindPhoto(id);
+            if (photo == null) 
+            {
+                TempData["Error"] = "Photo not found";
+                return View();
+            }
 
             var photoVM = new EditPhotoViewModel
             {
@@ -101,53 +92,45 @@ namespace PhotoGalleryApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, EditPhotoViewModel requestVM) 
+        public IActionResult Edit(int id, EditPhotoViewModel requestVM)
         {
-            if (!ModelState.IsValid) 
-            {
-                ModelState.AddModelError("", "Failed to edit photo");
-                return View("Index", requestVM);
-            }
 
-            var photo = _context.Photos.AsNoTracking().FirstOrDefault(p =>p.Id == id);
-            
-            if (photo == null) return View("error");
-
-            var photoResult = _photoService.AddPhoto(requestVM.Image);
-            if (photoResult.Error != null) 
+            var oldPhoto = _photoService.FindPhotoNoTracking(id);
+            if (oldPhoto == null)
             {
-                ModelState.AddModelError("Image", "Photo failed to upload");
+                TempData["Error"] = "Photo not found";
                 return View(requestVM);
             }
 
-            if (!string.IsNullOrEmpty(photo.URL))
+
+            var newPhoto = _cloudService.AddPhoto(requestVM.Image);
+            if (newPhoto.Error != null)
             {
-                _ = _photoService.DeletePhoto(photo.URL);
+                TempData["Error"] = "New photo failed to upload";
+                return View(requestVM);
             }
 
-            var newPhoto = new Photo
+            if (!string.IsNullOrEmpty(oldPhoto.URL))
             {
-                Id = requestVM.Id,
-                Title = requestVM.Title,
-                AlbumCategory = requestVM.AlbumCategory,
-                URL = photoResult.Url.ToString()
-            };
+                _ = _cloudService.DeletePhoto(oldPhoto.URL);
+            }
 
-            _context.Photos.Update(newPhoto);
-            _context.SaveChanges();
+            _photoService.UpdatePhoto(id, requestVM, newPhoto);
+            _photoService.Save();
+
             return RedirectToAction("Index");
 
         }
 
 
-        ///Delete photos
-       [HttpGet]
+        [HttpGet]
         public IActionResult Delete(int id) 
         {
-            var photo = _context.Photos.FirstOrDefault(p => p.Id == id);
-            if (photo == null) 
+            var photo = _photoService.FindPhoto(id);
+            if (photo == null)
             {
-                return View("Error");
+                TempData["Error"] = "Photo not found";
+                return View();
             }
             return View(photo);
         }
@@ -155,17 +138,9 @@ namespace PhotoGalleryApp.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePhoto(int id)
         {
-            var photo = _context.Photos.FirstOrDefault(p => p.Id == id);
-            if (photo == null)
-            {
-                return View("Error");
-            }
-            if (!string.IsNullOrEmpty(photo.URL))
-            {
-              _photoService.DeletePhoto(photo.URL);
-            }
-            _context.Photos.Remove(photo);
-            _context.SaveChanges();
+            _photoService.DeletePhoto(id);
+            _photoService.Save();
+
             return RedirectToAction("Index");
         }
     }

@@ -11,6 +11,6 @@ namespace PhotoGalleryApp.Models
         public string Title { get; set; } = string.Empty;
         [Required]      
         public string URL { get; set; } = string.Empty;
-        public AlbumNumber AlbumCategory { get; set; }
+        public AlbumName AlbumCategory { get; set; }
     }
 }

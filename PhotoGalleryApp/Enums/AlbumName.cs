@@ -1,11 +1,10 @@
 ﻿namespace PhotoGalleryApp.Enums
 {
-    public enum AlbumNumber
+    public enum AlbumName
     {
         Forest = 1,
         Macro = 2,
         Wildlife = 3,
         Winter = 4,
-        BW = 5,
     }
 }
