@@ -13,7 +13,7 @@ namespace PhotoGalleryApp.ViewModels
         [Required(ErrorMessage = "Image is required")]
         public IFormFile Image { get; set; }
 
-        [Required, Range(1, int.MaxValue, ErrorMessage = "Album is required!")]
+        [Required, Range(1, int.MaxValue, ErrorMessage = "Album is required")]
         public AlbumName AlbumCategory { get; set; }
     }
 }
